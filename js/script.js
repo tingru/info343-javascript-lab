@@ -8,7 +8,10 @@
 */ 
 
 function addition() {
-	// your code goes here!
+	var n1 = parseFloat(document.getElementById('additionInput1').value);
+	var n2 = parseFloat(document.getElementById('additionInput2').value);
+	alert(n1 + n2);
+
 }
 
 /* --------------------------------------------------------- */
@@ -27,10 +30,22 @@ function addition() {
 	note the lack of plurality on the word vowel.
 */ 
 
-function vowelCounter() {
-	// your code goes here!
-}
 
+	// your code goes here!
+function vowelCounter() {
+	var chars = document.getElementById('vowelInput').value.split("");
+	var vowels = ['a', 'e', 'i', 'o', 'u'];
+	var count = 0;
+	for(idx = 0; idx < chars.length; ++idx) {
+		for(var j = 0; j < vowels.length; ++j) {
+			if(chars[j] == vowels[j]) {
+				count++;
+			}
+		}
+	}
+	var sentence = "That sentence has " + count + (count == 1 ? " vowel" : " vowels") + " in it.";
+	document.getElementById('vowelInput').value = sentence;
+}
 /* --------------------------------------------------------- */
 
 
@@ -57,14 +72,28 @@ function vowelCounter() {
 
 	For extra functionality, track the number of guesses the user has made, and print that as part of the result.
 */ 
+var number = 1;
+var time = 0;
 
 function submit() {
+	time++
+	var guess = parseInt(document.getElementById('numberGuess').value);
+	var result = document.getElementById('numberResult');
+	if(guess > number) {
+		result.innerHTML = "Lower";
+	} else if (guess < number) {
+		result.innerHTML = "Higher"; 
+	} else {
+		result.innerHTML = "You spent " + time + " on the gussing game!";
+	}
 	
 }
 
 function reset() {
-
-}
+	document.getElementById('numberResult').innerHTML = "Your result will go here.";
+	document.getElementById('numberGuess').value = "",
+	number = Math.floor(Math.random() * 100) + 1;
+} 
 
 
 /* click handlers */
